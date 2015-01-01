@@ -11,7 +11,9 @@ import static org.vertx.testtools.VertxAssert.fail;
 import static org.vertx.testtools.VertxAssert.testComplete;
 
 /**
- * @author emil.bostijancic@bytesource.net 01/01/15.
+ * Test should verify that verticle is working correctly.
+ *
+ * @author emil.bostijancic@gmail.com 2015-01-01.
  */
 public class TestJsonWebToken extends TestVerticle {
     private static final String SECRET_KEY = "ABCDEFGHI32";
