@@ -16,6 +16,7 @@ import java.util.Base64;
  */
 public class JwtUtil {
 
+    public static final String UTF_8 = "UTF-8";
     private static String BASE64_HEADER = "";
 
     static {
@@ -41,10 +42,10 @@ public class JwtUtil {
         }
 
         try {
-            final byte[] payloadBytes = payload.toString().getBytes("UTF-8");
+            final byte[] payloadBytes = payload.toString().getBytes(UTF_8);
             final byte[] encodedPayload = Base64.getEncoder().encode(payloadBytes);
 
-            return new String(encodedPayload, "UTF-8");
+            return new String(encodedPayload, UTF_8);
         } catch (UnsupportedEncodingException e) {
             return null;
         }
@@ -63,8 +64,8 @@ public class JwtUtil {
         }
 
         try {
-            final byte[] decoded = Base64.getDecoder().decode(hash.getBytes("UTF-8"));
-            return new JsonObject(new String(decoded, "UTF-8"));
+            final byte[] decoded = Base64.getDecoder().decode(hash.getBytes(UTF_8));
+            return new JsonObject(new String(decoded, UTF_8));
         } catch (UnsupportedEncodingException e) {
             return null;
         }
@@ -84,7 +85,7 @@ public class JwtUtil {
         }
 
         try {
-            final byte[] payloadBytes = payload.toString().getBytes("UTF-8");
+            final byte[] payloadBytes = payload.toString().getBytes(UTF_8);
 
             final Mac hmac = initMac(secretKey);
 
@@ -104,7 +105,7 @@ public class JwtUtil {
         final Mac hmac;
         try {
             hmac = Mac.getInstance(algorithm);
-            final SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes("UTF-8"), algorithm);
+            final SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(UTF_8), algorithm);
             hmac.init(secretKeySpec);
         } catch (UnsupportedEncodingException e) {
             return null;

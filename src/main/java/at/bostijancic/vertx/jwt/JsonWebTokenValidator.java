@@ -8,7 +8,7 @@ import org.vertx.java.platform.Verticle;
 /**
  * JsonWebTokenValidator is a verticle used to create and
  * verify JWT (json web tokens) using HMAC SHA256 algorithm).
- * <p/>
+ *
  * The secret key is obtained from the config.json file.
  *
  * @author emil.bostijancic@gmail.com 2015-01-01.

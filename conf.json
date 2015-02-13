@@ -1,0 +1,5 @@
+// Example JSON config file
+
+{
+  "jwt_secret_key": "some secret key used for signing the jwt."
+}

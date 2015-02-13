@@ -1,0 +1,11 @@
+{
+  "author": "Emil Bostijancic",
+  "keywords": [
+    "jwt",
+    "json web token",
+    "sign",
+    "verify"
+  ],
+  "developers": ["Emil Bostijancic"],
+  "main": "at.bostijancic.vertx.jwt.JsonWebTokenValidator"
+}

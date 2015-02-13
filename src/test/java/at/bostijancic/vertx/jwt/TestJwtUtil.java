@@ -3,6 +3,8 @@ package at.bostijancic.vertx.jwt;
 import org.junit.Test;
 import org.vertx.java.core.json.JsonObject;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 /**
@@ -27,7 +29,7 @@ public class TestJwtUtil {
         assertEquals(header, JwtUtil.decode(headerTokenPart));
 
         final String payloadTokenPart = token.split("\\.")[1];
-        assertEquals(payload, JwtUtil.decode(payloadTokenPart));
+        assertEquals(payload.toMap(), JwtUtil.decode(payloadTokenPart).toMap());
 
         final boolean isValid = JwtUtil.verifyToken(token, SECRET_KEY);
         assertTrue(isValid);
@@ -61,7 +63,7 @@ public class TestJwtUtil {
         assertNotNull(hash);
 
         final JsonObject decodedPayload = JwtUtil.decode(hash);
-        assertEquals(payload, decodedPayload);
+        assertEquals(payload.toMap(), decodedPayload.toMap());
     }
 
     private JsonObject getHeader() {
@@ -72,11 +74,16 @@ public class TestJwtUtil {
     }
 
     private JsonObject getPayload() {
-        final JsonObject payload = new JsonObject();
+        final JwtPayload payload = new JwtPayload();
 
-        payload.putString("user", "emil");
-        payload.putNumber("age", 32);
+        payload.setIssuer("emil");
+        payload.setSubject("jwt");
+        payload.setExpirationTime(3600);
+        payload.setIssuedAt(new Date());
+        payload.setNotBefore(new Date());
+        payload.setAudience("all");
 
+        System.out.println(payload.encodePrettily());
         return payload;
     }
 }
